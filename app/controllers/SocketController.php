@@ -87,9 +87,21 @@ class SocketController extends \BaseController {
 
 		// include the web sockets server script (the server is started at the far bottom of this file)
 		//require 'class.PHPWebSocket.php';
-
 		// when a client sends data to the server
-		function wsOnMessage($clientID, $message, $messageLength, $binary) {
+		
+
+		// start the server
+		$Server = new PHPWebSocket();
+		$Server->bind('message', 'wsOnMessage');
+		$Server->bind('open', 'wsOnOpen');
+		$Server->bind('close', 'wsOnClose');
+		// for other computers to connect, you will probably need to change this to your LAN IP or external IP,
+		// alternatively use: gethostbyaddr(gethostbyname($_SERVER['SERVER_NAME']))
+		$Server->wsStartServer('127.0.0.1', 9300);
+		
+
+	}
+	public function wsOnMessage($clientID, $message, $messageLength, $binary) {
 			global $Server;
 			$ip = long2ip( $Server->wsClients[$clientID][6] );
 
@@ -110,7 +122,7 @@ class SocketController extends \BaseController {
 		}
 
 		// when a client connects
-		function wsOnOpen($clientID)
+		public function wsOnOpen($clientID)
 		{
 			global $Server;
 			$ip = long2ip( $Server->wsClients[$clientID][6] );
@@ -124,7 +136,7 @@ class SocketController extends \BaseController {
 		}
 
 		// when a client closes or lost connection
-		function wsOnClose($clientID, $status) {
+		public function wsOnClose($clientID, $status) {
 			global $Server;
 			$ip = long2ip( $Server->wsClients[$clientID][6] );
 
@@ -134,17 +146,10 @@ class SocketController extends \BaseController {
 			foreach ( $Server->wsClients as $id => $client )
 				$Server->wsSend($id, "Visitor $clientID ($ip) has left the room.");
 		}
-
-		// start the server
-		$Server = new PHPWebSocket();
-		$Server->bind('message', 'wsOnMessage');
-		$Server->bind('open', 'wsOnOpen');
-		$Server->bind('close', 'wsOnClose');
-		// for other computers to connect, you will probably need to change this to your LAN IP or external IP,
-		// alternatively use: gethostbyaddr(gethostbyname($_SERVER['SERVER_NAME']))
-		$Server->wsStartServer('127.0.0.1', 9300);
-
-	}
+		public function connectSocketServer()
+		{
+			return View::make('index');
+		}
 
 
 }

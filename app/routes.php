@@ -16,3 +16,7 @@ Route::get('/', function()
 	return View::make('hello');
 });
 Route::get('/twitter', 'OAuthController@loginWithTwitter');
+
+Route::get('/start', 'SocketController@startSocketServer');
+
+Route::get('/connect', 'SocketController@connectSocketServer');
