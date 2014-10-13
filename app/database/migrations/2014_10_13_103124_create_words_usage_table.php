@@ -12,7 +12,15 @@ class CreateWordsUsageTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('words_usage', function($t) {
+              // auto increment id (primary key)
+              $t->increments('id');
+              $t->integer('word_id');
+              $t->string('POS', 64);
+              $t->string('usage');
+              $t->boolean('active')->default(1);
+              $t->timestamps();
+        });
 	}
 
 	/**
@@ -23,6 +31,7 @@ class CreateWordsUsageTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('words_usage');
 	}
 
 }

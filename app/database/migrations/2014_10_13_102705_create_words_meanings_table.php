@@ -12,9 +12,16 @@ class CreateWordsMeaningsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('words_meanings', function($t) {
+              $t->increments('id');
+              // auto increment id (primary key)
+              $t->integer('word_id');
+              $t->string('POS', 64);
+              $t->text('meaning');
+              $t->boolean('active')->default(1);
+              $t->timestamps();
+        });
 	}
-
 	/**
 	 * Reverse the migrations.
 	 *
@@ -23,6 +30,7 @@ class CreateWordsMeaningsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('words_meanings');
 	}
 
 }

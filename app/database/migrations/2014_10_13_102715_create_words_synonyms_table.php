@@ -13,6 +13,15 @@ class CreateWordsSynonymsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('words_synonyms', function($t) {
+              // auto increment id (primary key)
+              $t->increments('id');
+              $t->integer('word_id');
+              $t->integer('synonym_id');
+              $t->text('meaning');
+              $t->boolean('active')->default(1);
+              $t->timestamps();
+        });
 	}
 
 	/**
@@ -23,6 +32,7 @@ class CreateWordsSynonymsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('words_synonyms');
 	}
 
 }

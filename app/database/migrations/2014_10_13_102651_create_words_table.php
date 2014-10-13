@@ -13,6 +13,14 @@ class CreateWordsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('words', function($t) {
+              // auto increment id (primary key)
+              $t->increments('id');
+              $t->string('word', 128);
+              $t->integer('diff_level');
+              $t->boolean('active')->default(1);
+              $t->timestamps();
+          });
 	}
 
 	/**
@@ -23,6 +31,7 @@ class CreateWordsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('words');
 	}
 
 }
