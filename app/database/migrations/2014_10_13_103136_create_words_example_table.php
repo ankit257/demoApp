@@ -4,7 +4,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateWordsExampleTable extends Migration {
-
 	/**
 	 * Run the migrations.
 	 *
@@ -23,7 +22,6 @@ class CreateWordsExampleTable extends Migration {
               $t->timestamps();
         });
 	}
-
 	/**
 	 * Reverse the migrations.
 	 *
