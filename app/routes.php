@@ -21,4 +21,4 @@ Route::get('/start', 'SocketController@startSocketServer');
 
 Route::get('/connect', 'SocketController@connectSocketServer');
 
-Route::get('/start', 'RoomController@start');
+Route::get('/room', 'RoomController@start');
