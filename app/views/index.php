@@ -10,7 +10,7 @@
 		#message {width:100%;line-height:20px}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="http://localhost/laravel/public/js/websocket.js"></script>
+	<script src="js/websocket.js"></script>
 	<script>
 		var Server;
 

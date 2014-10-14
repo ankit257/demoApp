@@ -11,6 +11,12 @@ class SocketController extends \BaseController {
 	{
 		return View::make('index');
 	}
+
+	public function connectSocketServerAngular()
+	{
+		return View::make('indexangular');
+	}
+
 	public function startSocketServer(){
 		global $Server;
 		// prevent the server from timing out

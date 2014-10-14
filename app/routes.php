@@ -21,4 +21,6 @@ Route::get('/start', 'SocketController@startSocketServer');
 
 Route::get('/connect', 'SocketController@connectSocketServer');
 
+Route::get('/connectnv', 'SocketController@connectSocketServerAngular');
+
 Route::get('/room', 'RoomController@start');
